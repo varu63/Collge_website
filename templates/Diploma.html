@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diploma Program - Elite Technical College</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="{{url_for('static',filename ='Diploma_style.css')}}">
+</head>
+
+<body>
+
+  <!-- 3D Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Page Content -->
+  <div class="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
+
+    <!-- Header -->
+    <div class="animated-card bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-8 text-center mb-10">
+      <h1 class="text-4xl md:text-5xl font-bold text-blue-600 mb-4">
+        Polytechnic Diploma Programs
+      </h1>
+      <p class="text-lg text-gray-600">
+        Elite Technical College
+      </p>
+    </div>
+
+    <!-- About Section -->
+    <div class="animated-card bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-8 mb-10"
+      style="animation-delay: 0.2s;">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-6">About the Diploma Program</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Our Diploma programs are career-focused, three-year technical courses designed for quick entry into the
+        industry. They offer a strong blend of theoretical knowledge and practical, hands-on training, ensuring
+        students are job-ready immediately after graduation. Diplomas also provide an excellent pathway for direct
+        lateral entry into B.Tech programs.
+      </p>
+    </div>
+
+    <!-- Branches -->
+    <div class="animated-card bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-8 mb-10"
+      style="animation-delay: 0.4s;">
+      <h2 class="text-3xl font-semibold text-blue-600 mb-8">Available Diploma Branches</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+          <h3 class="text-2xl font-bold text-blue-500 mb-2">Computer Science (CS)</h3>
+          <p class="text-gray-600">Focus on foundational programming, operating systems, and computer hardware.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+          <h3 class="text-2xl font-bold text-blue-500 mb-2">Machine Learning (ML)</h3>
+          <p class="text-gray-600">Introduction to data analysis, basic algorithms, and AI concepts for practical
+            application.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+          <h3 class="text-2xl font-bold text-blue-500 mb-2">Electronics & Comm. (EC)</h3>
+          <p class="text-gray-600">Gain practical skills in electronic circuit design, testing, and communication
+            systems.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+          <h3 class="text-2xl font-bold text-blue-500 mb-2">Information Technology (IT)</h3>
+          <p class="text-gray-600">Training in network administration, cloud basics, and system maintenance.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 md:col-span-2">
+          <h3 class="text-2xl font-bold text-blue-500 mb-2">Agriculture</h3>
+          <p class="text-gray-600">Technical expertise in modern farming methods, machinery, and crop management.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Apply Button -->
+    <div class="animated-card text-center" style="animation-delay: 0.6s;">
+      <a href="{{url_for('admission_form')}}"
+        class="inline-block py-4 px-10 rounded-lg shadow-lg text-xl font-medium text-white bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105">
+        Apply Now
+      </a>
+    </div>
+
+  </div>
+  <script src="{{url_for('static',filename ='static\Diploma.js')}}"></script>
+
+
+</body>
+
+</html>

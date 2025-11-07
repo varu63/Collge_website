@@ -1,0 +1,38 @@
+/* Use Inter font */
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+    /* Keep color light for canvas transparency, primary text set in tailwind class */
+    color: #1f2937;
+}
+
+/* Style for the 3D canvas background */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Place it behind all other content */
+}
+
+/* Animation for content cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animated-card {
+    opacity: 0;
+    /* Start hidden */
+    animation: fadeInUp 0.7s ease-out forwards;
+}

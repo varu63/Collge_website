@@ -1,0 +1,22 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    /* light background */
+    color: #1f2937;
+    /* gray-800 text */
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://image.replicate.ai/floyd/ai_submission/90e54d6f-703a-449e-b83b-f483a93666b6/output.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.25;
+    /* subtle image for light mode */
+}

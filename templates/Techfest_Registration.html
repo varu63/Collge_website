@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register for TechFest 2025 | Elite Technical College</title>
+
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Load Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Load "Inter" font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{url_for('static',filename ='Techfest_registration_style.css')}}">
+</head>
+
+<body class="text-gray-900 bg-opacity-70 bg-black/20 backdrop-blur-sm relative overflow-x-hidden">
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="bg-white/10 backdrop-blur-md fixed w-full top-0 z-50 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="text-2xl font-bold gradient-text">Elite Technical College</a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex space-x-8 text-white font-semibold">
+        <li><a href="index.html#home" class="hover:text-green-400">Home</a></li>
+        <li><a href="index.html#courses" class="hover:text-green-400">Courses</a></li>
+        <li><a href="index.html#about" class="hover:text-green-400">About</a></li>
+        <li><a href="index.html#students" class="hover:text-green-400">Placements</a></li>
+        <li><a href="index.html#admissions" class="hover:text-green-400">Admissions</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button (Hamburger) -->
+      <button id="menu-toggle" class="md:hidden text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h-12"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Menu (Toggled by JS) -->
+      <ul id="mobile-menu" 
+          class="absolute md:hidden top-16 left-0 w-full bg-white/30 backdrop-blur-xl
+                 flex-col items-center space-y-4 py-4
+                 text-white font-semibold hidden">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#students">Placements</a></li>
+        <li><a href="index.html#admissions">Admissions</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- Main Content: TechFest Registration Form -->
+  <section id="techfest-registration" class="py-32 bg-white/30 backdrop-blur-lg text-center min-h-screen">
+    <div class="max-w-3xl mx-auto bg-white/80 p-8 md:p-12 rounded-2xl shadow-lg text-left">
+      <h2 class="text-4xl font-bold gradient-text mb-6">TechFest 2025 Registration</h2>
+      
+      <p class="text-lg text-gray-700 mb-8">
+        We're excited to have you! Please fill out the form below to register for TechFest 2025.
+      </p>
+            <!-- Flash Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+
+      <form action="{{url_for('registration_form')}}" method="POST" class="space-y-6">
+        <!-- Personal Information -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="full-name" class="form-label">Full Name</label>
+            <input type="text" id="full-name" name="full-name" class="form-input" placeholder="John Doe" required>
+          </div>
+          <div>
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="form-input" placeholder="+91 12345 67890" required>
+        </div>
+
+        <!-- Academic Information -->
+        <div>
+          <label for="college" class="form-label">College / Institution Name</label>
+          <input type="text" id="college" name="college" class="form-input" placeholder="e.g., Elite Technical College" required>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="course" class="form-label">Course</label>
+            <input type="text" id="course" name="course" class="form-input" placeholder="e.g., B.Tech CSE" required>
+          </div>
+          <div>
+            <label for="year" class="form-label">Year of Study</label>
+            <input type="number" id="year" name="year" class="form-input" placeholder="e.g., 3" min="1" max="5" required>
+          </div>
+        </div>
+
+        <!-- Event Selection -->
+        <div>
+          <span class="form-label">Events you wish to participate in:</span>
+          <div class="mt-2 space-y-2 text-gray-700">
+            <div class="flex items-center">
+              <input id="event-hackathon" name="events[]" type="checkbox" value="hackathon" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+              <label for="event-hackathon" class="ml-3">24-Hour Hackathon</label>
+            </div>
+            <div class="flex items-center">
+              <input id="event-robotics" name="events[]" type="checkbox" value="robotics" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+              <label for="event-robotics" class="ml-3">Robotics Competition</label>
+            </div>
+            <div class="flex items-center">
+              <input id="event-expo" name="events[]" type="checkbox" value="expo" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+              <label for="event-expo" class="ml-3">Project Expo</label>
+            </div>
+            <div class="flex items-center">
+              <input id="event-workshops" name="events[]" type="checkbox" value="workshops" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+              <label for="event-workshops" class="ml-3">Workshops (All)</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Name (Optional) -->
+        <div>
+          <label for="team-name" class="form-label">Team Name (if applicable for Hackathon/Robotics)</label>
+          <input type="text" id="team-name" name="team-name" class="form-input" placeholder="e.g., The Code Breakers">
+          <p class="text-sm text-gray-500 mt-1">If you are participating in a team event, please enter your team name.</p>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="border-t border-gray-300 pt-6">
+          <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition">
+            Submit Registration
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-center py-6">
+    <p>© 2025 Elite Technical College. All rights reserved.</p>
+    <div class="flex justify-center space-x-6 mt-4">
+      <a href="#" class="text-gray-500 hover:text-white">Twitter</a>
+      <a href="#" class="text-gray-500 hover:text-white">LinkedIn</a>
+      <a href="#" class="text-gray-500 hover:text-white">Facebook</a>
+    </div>
+  </footer>
+<script src="{{url_for('static',filename ='Techfest_reg.js')}}"></script>
+</body>
+</html>

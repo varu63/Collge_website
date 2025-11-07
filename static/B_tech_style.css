@@ -1,0 +1,36 @@
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    background-color: #f9fafb;
+    /* Light background */
+    color: #1f2937;
+    /* Neutral text */
+}
+
+/* Background Canvas */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Smooth fade animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animated-card {
+    opacity: 0;
+    animation: fadeInUp 0.7s ease-out forwards;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA Program - Elite Technical College</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{url_for('static',filename ='BCA_style.css')}}">
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+     <canvas id="bg-canvas"></canvas>
+
+ <div class="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
+        
+         <div
+            class="animated-card bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-8 text-center mb-10">
+             <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                 Bachelor of Computer Applications (BCA)
+                </h1>
+            <p class="text-xl text-blue-300">Elite Technical College</p>
+            </div>
+
+        <div
+            class="animated-card bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-8 mb-10"
+            style="animation-delay: 0.2s;">
+             <h2 class="text-3xl font-semibold text-gray-900 mb-6">About the BCA Program</h2>
+             <p class="text-gray-700 text-lg leading-relaxed">
+                The BCA program at Elite Technical College is a three-year undergraduate course designed to build a strong
+                foundation in computer applications and information technology. It is highly practical and
+                career-oriented, focusing on modern programming languages, software development methodologies, and
+                essential IT skills. This degree prepares students for immediate entry into the IT industry as
+                developers, analysts, and system managers.
+                </p>
+         </div>
+
+        <div
+            class="animated-card bg-white bg-opacity-90 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 p-8 mb-10"
+            style="animation-delay: 0.4s;">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-8">Key Focus Areas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                 <div
+                    class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">Software
+                        Development</h3>
+                    <p class="text-gray-600">Master programming in languages
+                        like Python and Java for application development.</p>
+                    </div>
+                
+                <div
+                    class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                     <h3 class="text-2xl font-bold text-blue-700 mb-2">Database
+                        Management</h3>
+                    <p class="text-gray-600">Learn to design, implement, and
+                        manage complex SQL and NoSQL databases.</p>
+                    </div>
+                
+                <div
+                    class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">Web
+                        Technologies</h3>
+                     <p class="text-gray-600">Build responsive and dynamic
+                        websites using HTML, CSS, JavaScript, and frameworks.</p>
+                </div>
+        
+                 <div
+                    class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                     <h3 class="text-2xl font-bold text-blue-700 mb-2">Cloud &
+                        Networking</h3>
+                    <p class="text-gray-600">Understand network security and the
+                        fundamentals of modern cloud computing services.</p>
+                     </div>
+                </div>
+            </div>
+
+        <div class="animated-card text-center" style="animation-delay: 0.6s;">
+            <a href="{{url_for('admission_form')}}"
+                class="inline-block py-4 px-10 border border-transparent rounded-lg shadow-lg text-xl font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-gray-100 transition-all duration-200 transform hover:scale-105">
+                 Apply Now
+                 </a>
+             </div>
+
+         </div>
+
+   <script src="{{url_for('static',filename ='BCA.js')}}"></script>
+
+</body>
+
+</html>

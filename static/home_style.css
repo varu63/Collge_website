@@ -1,0 +1,193 @@
+body {
+    /* Use the loaded 'Inter' font with a sans-serif fallback */
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+
+    /* NOTE: The original background image was here.
+        It's being covered by the Three.js canvas and the body overlay.
+        I've left it as-is, but it's not strictly necessary if the canvas is opaque.
+      */
+    background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #34d399, #60a5fa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Background 3D Canvas */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Make canvas slightly transparent to show image behind */
+    opacity: 0.9;
+}
+
+/* FIX: Removed the duplicate '@keyframes floaty' definition. 
+      Only one is needed.
+    */
+@keyframes floaty {
+
+    0%,
+    100% {
+        transform: scale(1) translateY(0);
+    }
+
+    50% {
+        transform: scale(1.02) translateY(-6px);
+    }
+}
+
+/* This class is still unused, but is now correctly defined */
+.animate-floaty {
+    animation: floaty 6s ease-in-out infinite;
+}
+
+/* Added class for the mobile menu links when active */
+#mobile-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+#mobile-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* === Chatbot Floating Button === */
+#chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+/* Floating Button */
+#chatbot-button {
+    background-color: #00b894;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#chatbot-button:hover {
+    background-color: #019874;
+    transform: scale(1.1);
+}
+
+/* === Chat Window === */
+#chatbot-window {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 320px;
+    height: 420px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Header */
+#chatbot-header {
+    background-color: #00b894;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Messages Area */
+#chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f7f7f7;
+}
+
+.message {
+    margin: 6px 0;
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.user {
+    background-color: #dfe6e9;
+    align-self: flex-end;
+    text-align: right;
+    margin-left: auto;
+}
+
+.bot {
+    background-color: #81ecec;
+    align-self: flex-start;
+}
+
+/* Input Area */
+#chatbot-input-area {
+    display: flex;
+    padding: 8px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+}
+
+#chatbot-input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+#chatbot-send {
+    background-color: #00b894;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#chatbot-send:hover {
+    background-color: #019874;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

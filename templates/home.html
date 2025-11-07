@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elite Technical College</title>
+
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Load Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Load "Inter" font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="{{url_for('static',filename ='home_style.css')}}">
+</head>
+
+<body class="text-gray-900 bg-opacity-70 bg-black/20 backdrop-blur-sm relative overflow-x-hidden">
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="bg-white/10 backdrop-blur-md fixed w-full top-0 z-50 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold gradient-text">Elite Technical College</h1>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex space-x-8 text-white font-semibold">
+        <li><a href="#home" class="hover:text-green-400">Home</a></li>
+        <li><a href="#courses" class="hover:text-green-400">Courses</a></li>
+        <li><a href="#about" class="hover:text-green-400">About</a></li>
+        <li><a href="#students" class="hover:text-green-400">Placements</a></li>
+        <li><a href="#admissions" class="hover:text-green-400">Admissions</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button (Hamburger) -->
+      <button id="menu-toggle" class="md:hidden text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <!-- Hamburger Icon -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h-12"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Menu (Toggled by JS) -->
+      <ul id="mobile-menu" 
+          class="absolute md:hidden top-16 left-0 w-full bg-white/30 backdrop-blur-xl
+                 flex-col items-center space-y-4 py-4
+                 text-white font-semibold hidden">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#students">Placements</a></li>
+        <li><a href="#admissions">Admissions</a></li>
+      </ul>
+
+    </div>
+  </nav>
+  <!-- Chatbot Container -->
+<div id="chatbot">
+  <div id="chatbot-button">💬</div>
+
+  <div id="chatbot-window">
+    <div id="chatbot-header">Elite College Chatbot</div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input-area">
+      <input type="text" id="chatbot-input" placeholder="Type a message..." />
+      <button id="chatbot-send">Send</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Hero -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center text-white px-4">
+    <h2 class="text-5xl md:text-6xl font-extrabold gradient-text mb-6 mt-24">Empowering Innovation & Excellence</h2>
+    <p class="text-lg md:text-xl max-w-2xl mb-8">Preparing students for tomorrow’s world through cutting-edge education
+      in technology, science, and creativity.</p>
+    <a href="#courses"
+      class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full text-lg shadow-md transition">Explore
+      Programs</a>
+  </section>
+
+  <!-- Courses -->
+  <section id="courses" class="py-20 bg-white/30 backdrop-blur-lg text-center">
+    <h2 class="text-4xl font-bold gradient-text mb-12">Our Courses</h2>
+    <div class="grid md:grid-cols-3 gap-10 px-6 max-w-6xl mx-auto">
+      <div class="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2">
+        <h3 class="text-2xl font-semibold mb-4 text-green-600">B.Tech</h3>
+        <p class="mb-4">4-year undergraduate program in Computer Science, IT, and Electronics Engineering.</p>
+        <a href="{{url_for('B_Tech')}}" class="text-green-600 font-bold hover:underline">Learn More</a>
+      </div>
+      <div class="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2">
+        <h3 class="text-2xl font-semibold mb-4 text-green-600">BCA</h3>
+        <p class="mb-4">3-year program focused on software development, AI, and data analytics.</p>
+        <a href="{{url_for('BCA')}}" class="text-green-600 font-bold hover:underline">Learn More</a>
+      </div>
+      <div class="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2">
+        <h3 class="text-2xl font-semibold mb-4 text-green-600">Diploma</h3>
+        <p class="mb-4">3-year technical diploma course with industry training and practical exposure.</p>
+        <a href="{{url_for('Diploma')}}" class="text-green-600 font-bold hover:underline">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!--About section-->
+  <section id="about"
+    class="flex flex-col md:flex-row items-center justify-between w-full px-10 py-12 bg-gradient-to-r from-blue-50 to-indigo-100">
+
+    <!-- LEFT SIDE: IMAGE SLIDER -->
+    <div class="relative w-full md:w-[45%] h-[400px] overflow-hidden rounded-2xl shadow-2xl">
+      <!-- 
+        FIX: Removed the massive hardcoded base64 src attribute. 
+        The 'src' and 'alt' will now be set by JavaScript.
+        Added transition classes for a smooth fade effect.
+      -->
+      <img id="aboutImage"
+        alt="About Elite Technical College"
+        class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-700 ease-in-out">
+    </div>
+
+    <!-- RIGHT SIDE: INFORMATION -->
+    <div class="w-full md:w-[50%] mt-8 md:mt-0 md:pl-10 text-gray-800 space-y-4">
+      <h2 class="text-3xl font-bold mb-3">About Our College</h2>
+      <p class="text-base leading-relaxed">Elite Technical College offers quality education with a
+        focus on innovation, research, and real-world applications.</p>
+      <p class="text-base leading-relaxed">Our students benefit from modern infrastructure, experienced faculty, and a
+        vibrant learning culture.</p>
+      <p class="text-base leading-relaxed">We offer diverse programs including B.Tech, BCA, and Diploma courses with
+        strong placement support.</p>
+    </div>
+  </section>
+
+
+  <!-- News & Announcements -->
+  <section id="news" class="py-16 bg-white/30 backdrop-blur-lg text-center">
+    <h2 class="text-4xl font-bold gradient-text mb-8">Latest News & Announcements</h2>
+    <div class="grid md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">
+      <div class="bg-white/80 p-6 rounded-xl shadow-md hover:-translate-y-1 transition">
+        <h3 class="text-green-600 font-semibold text-lg mb-2">Admissions 2025 Open</h3>
+        <p class="text-gray-700 text-sm">Online registration starts from March 10th, 2025. Apply early to secure your
+          seat.</p>
+          <a href="{{url_for('Admission_Details')}}" class="text-green-600 font-bold hover:underline">Learn More</a>
+      </div>
+      <div class="bg-white/80 p-6 rounded-xl shadow-md hover:-translate-y-1 transition">
+        <h3 class="text-green-600 font-semibold text-lg mb-2">TechFest 2025</h3>
+        <p class="text-gray-700 text-sm">Join our national-level hackathon and innovation summit this April.</p>
+        <a href="{{url_for('Techfest')}}" class="text-green-600 font-bold hover:underline">Learn More</a>
+      </div>
+      <div class="bg-white/80 p-6 rounded-xl shadow-md hover:-translate-y-1 transition">
+        <h3 class="text-green-600 font-semibold text-lg mb-2">Placement Drive</h3>
+        <p class="text-gray-700 text-sm">Top recruiters like Infosys, TCS, and Wipro are visiting campus this season.
+        </p>
+        <a href="{{url_for('Placment_Drive')}}" class="text-green-600 font-bold hover:underline">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Passout Students (Placements) -->
+  <section id="students" class="py-20 bg-white/40 backdrop-blur-lg text-center">
+    <h2 class="text-4xl font-bold gradient-text mb-12">Our Proud Alumni - Placed Students</h2>
+    <div class="grid md:grid-cols-3 gap-10 px-6 max-w-6xl mx-auto">
+      <!-- Student 1 -->
+      <div class="bg-white/80 rounded-2xl shadow-xl p-6 hover:-translate-y-2 transition">
+        <!-- FIX: Improved accessibility with descriptive alt text -->
+        <img src="https://randomuser.me/api/portraits/men/31.jpg"
+          class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-green-400" alt="Rahul Sharma">
+        <h3 class="text-xl font-semibold text-green-700">Rahul Sharma</h3>
+        <p class="text-gray-700">Software Engineer, Infosys</p>
+        <p class="text-sm mt-2 text-gray-600">B.Tech (CSE), Batch 2023</p>
+      </div>
+
+      <!-- Student 2 -->
+      <div class="bg-white/80 rounded-2xl shadow-xl p-6 hover:-translate-y-2 transition">
+        <!-- FIX: Improved accessibility with descriptive alt text -->
+        <img src="https://randomuser.me/api/portraits/women/45.jpg"
+          class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-green-400" alt="Priya Verma">
+        <h3 class="text-xl font-semibold text-green-700">Priya Verma</h3>
+        <p class="text-gray-700">Data Analyst, TCS</p>
+        <p class="text-sm mt-2 text-gray-600">BCA, Batch 2022</p>
+      </div>
+
+      <!-- Student 3 -->
+      <div class="bg-white/80 rounded-2xl shadow-xl p-6 hover:-translate-y-2 transition">
+        <!-- FIX: Improved accessibility with descriptive alt text -->
+        <img src="https://randomuser.me/api/portraits/men/60.jpg"
+          class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-green-400" alt="Ankit Kumar">
+        <h3 class="text-xl font-semibold text-green-700">Ankit Kumar</h3>
+        <p class="text-gray-700">Network Engineer, Wipro</p>
+        <p class="text-sm mt-2 text-gray-600">Diploma (IT), Batch 2021</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Admissions -->
+  <section id="admissions" class="py-20 bg-indigo-600 text-white text-center">
+    <h2 class="text-4xl font-bold mb-8">Admissions Open 2025</h2>
+    <p class="max-w-2xl mx-auto text-lg mb-8">Join Elite Technical College and be a part of an institution that shapes
+      leaders in innovation and technology. Apply early to secure your seat!</p>
+    <a href="{{url_for('admission_form')}}" class="bg-white text-indigo-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Apply
+      Now</a>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-center py-6">
+    <p>© 2025 Elite Technical College. All rights reserved.</p>
+    <div class="flex justify-center space-x-6 mt-4">
+      <a href="#" class="text-gray-500 hover:text-white">Twitter</a>
+      <a href="#" class="text-gray-500 hover:text-white">LinkedIn</a>
+      <a href="#" class="text-gray-500 hover:text-white">Facebook</a>
+    </div>
+  </footer>
+
+  <script src="{{url_for('static',filename ='home.js')}}"></script>
+</body>
+</html>
